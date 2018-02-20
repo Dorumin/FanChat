@@ -11,13 +11,13 @@ FanChat (or FANChat, if you wanna be that guy) is a mobile client for Wikia's Sp
 * Just about everything you should expect from a modern chat app
 
 ## Releases
--update whenever I push the apk file into releases-
+[First public release is out! v0.0.1](../../releases/tag/v0.0.1)
 
 ## Screenshots
-<img src="https://i.imgur.com/WkDS8gi.png" alt="Demo1" width="200">
-<img src="https://i.imgur.com/N2ipWTZ.png" alt="Demo2" width="200">
-<img src="https://i.imgur.com/MWma9ia.png" alt="Demo3" width="200">
-<img src="https://i.imgur.com/Uk7VEQQ.png" alt="Demo4" width="200">
+<img src="https://i.imgur.com/WkDS8gi.png" alt="Demo1" width="200" style="float: left;">
+<img src="https://i.imgur.com/N2ipWTZ.png" alt="Demo2" width="200" style="float: left;">
+<img src="https://i.imgur.com/MWma9ia.png" alt="Demo3" width="200" style="float: left;">
+<img src="https://i.imgur.com/Uk7VEQQ.png" alt="Demo4" width="200" style="float: left;">
 
 ## Build it yourself
 In case you don't trust my .apk release (I don't blame you), you can build the package yourself from scratch.
