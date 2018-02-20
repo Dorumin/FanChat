@@ -27,7 +27,7 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 2. Install dependencies with `npm install`
 3. `npm install exp` (not _really_ a dependency, so done separately)
 4. Sign up into [expo](https://expo.io/signup) and `exp login`
-5. `exp build`
+5. `exp build:android`
 6. ???
 7. Profit
 
