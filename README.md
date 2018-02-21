@@ -26,7 +26,7 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 1. `git clone` this repo
 2. Install dependencies with `npm install`
 3. `npm install exp` (not _really_ a dependency, so done separately)
-4. Sign up into [expo](https://expo.io/signup) and `exp login`
+4. Sign up for [expo](https://expo.io/signup) and `exp login`
 5. `exp build:android`
 6. ???
 7. Profit
@@ -37,15 +37,13 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 * Can you stay connected to the chat while you're on other apps?
   * No. This is a limitation with React Native, not the app. It should give you about a minute before others see you disconnect, but once you bring the app to the foreground you should reconnect instantly.
 * Does it have ads?
-  * Do I look like I work for wikia?
+  * Do I look like I work for Wikia?
 * Why should I trust to put my password into this app?
   * The whole code is open source. [See for yourself](screens/Login.js), we don't do anything with your account information.
 * Can you upload GIF avatars through this?
   * No, the cropping tool turns them into still images. And I can't stand non-square gif avatars so you're not getting that.
 * Can I translate this to other languages?
   * Not yet. If I notice there's an interest in translating this application, I may add support for localization.
-* What license is this project released under?
-  * Who cares?
 * Why is it so ugly?
   * Because I'm not a graphics designer, dude. I aimed to make the most basic chat UI possible and stole most icons from google images.
 * How do I navigate on this piece of crap?
