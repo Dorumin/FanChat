@@ -44,6 +44,8 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
   * No, the cropping tool turns them into still images. And I can't stand non-square gif avatars so you're not getting that.
 * Can I translate this to other languages?
   * Not yet. If I notice there's an interest in translating this application, I may add support for localization.
+* What license is this project released under?
+  * Who cares?
 * Why is it so ugly?
   * Because I'm not a graphics designer, dude. I aimed to make the most basic chat UI possible and stole most icons from google images.
 * How do I navigate on this piece of crap?
