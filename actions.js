@@ -189,7 +189,9 @@ function parseEmoticons(chat) {
                     if (emoticon) {
                         chat.emoticons.table[emoticon.toLowerCase()] = emote;
                         chat.emoticons.images[emote] = chat.emoticons.images[emote] || emoticon;
-                        if (!/^(:|\().+\1$/.test(emoticon)) {
+                        const first = emoticon.charAt(0),
+                        last = emoticon.charAt(emoticon.length - 1);
+                        if (!(first == '(' && last == ')' || first == ':' && last == ':')) {
                             chat.emoticons.other.push(emoticon);
                         }
                     }
@@ -356,15 +358,21 @@ function dispatchSocketEvent(event, dispatch, socket, getState) {
                         dispatch(message);
                         dispatch(removeUser(attrs.name, wiki));
                     }
-                }, 10000);
+                }, type == 'part' ? 45000 : 10000);
             }
             break;
         case 'updateUser':
             console.log(body);
             break;
         case 'initial':
-            const { users, chats } = body.collections;
-            users.models.forEach(user => dispatch(receiveUser(user.attrs, name, wiki)));
+            const { users, chats } = body.collections,
+            oldUsers = chat.users.slice(0);
+            chat.users = [];
+            users.models.forEach(user => {
+                chat.users.push(user.attrs.name);
+                dispatch(receiveUser(user.attrs, name, wiki));
+            });
+            oldUsers.filter(name => !chat.users.includes(name)).forEach(name => removeUser(name, wiki));;
             chats.models.forEach(chat => {
                 if (!state.models.users[chat.attrs.name]) { // Done in order to see message backlong when the user has left chat (and you don't have them cached)
                     dispatch(receiveUser(
@@ -380,8 +388,10 @@ function dispatchSocketEvent(event, dispatch, socket, getState) {
                 }
                 dispatch(receiveMessage(chat.attrs, wiki));
             });
-            dispatch(connected(wiki));
-            if (!chat.private) {
+            if (!chat.rehydrating) {
+                dispatch(connected(wiki));
+            }
+            if (!chat.private && !chat.rehydrating) {
                 dispatch(
                     receiveMessage(
                         {
@@ -393,6 +403,7 @@ function dispatchSocketEvent(event, dispatch, socket, getState) {
                     )
                 );
             }
+            chat.rehydrating = false;
             break;
         case 'kick':
             dispatch(removeUser(attrs.kickedUserName, wiki));
@@ -630,6 +641,26 @@ export function attemptLogin(name, pass) {
         } catch(e) {
             dispatch(loginFailure(e.error));
         }
+    }
+}
+
+export function refreshChats(wiki) {
+    return (dispatch, getState) => {
+        const { models } = getState(),
+        data = JSON.stringify({
+            attrs: {
+                msgType: 'command',
+                command: 'initquery'
+            }
+        });
+        
+
+        Object.values(models.chats)
+            .filter(chat => chat.connected)
+            .forEach(chat => {
+                chat.rehydrating = true;
+                chat.socket.send(data)
+            });
     }
 }
 

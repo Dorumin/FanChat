@@ -8,11 +8,12 @@ import Touchable from 'react-native-platform-touchable';
 
 export default class ConfigSection extends React.Component {
     render() {
-        const { source, text, onPress } = this.props;
+        const { source, text, disabled, onPress } = this.props;
         return (
             <Touchable
                 onPress={onPress}
                 background={Touchable.Ripple('#eef')}
+                disabled={disabled}
             >
                 <View
                     style={{

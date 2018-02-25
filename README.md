@@ -11,7 +11,7 @@ FanChat (or FANChat, if you wanna be that guy) is a mobile client for Wikia's Sp
 * Just about everything you should expect from a modern chat app
 
 ## Releases
-[First public release is out! v0.0.1](../../releases/tag/v0.0.1)
+[v0.0.2 is out now! See the changelog for details](../../releases)
 
 ## Screenshots
 <img src="https://i.imgur.com/WkDS8gi.png" alt="Demo1" width="200" style="float: left;">

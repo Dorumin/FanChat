@@ -53,8 +53,8 @@ class Popout extends React.Component {
         this.mounted = false;
     }
 
-    componentWillReceiveProps() {
-        if (!this.mounted) return;
+    componentWillReceiveProps(nextProps) {
+        if (!this.mounted || (this.props.user && nextProps.user && this.props.user.name == nextProps.user.name)) return;
         if (this.animating) {
             this.props.onClose();
             this.animating = false;
