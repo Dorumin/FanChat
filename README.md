@@ -26,7 +26,7 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 1. `git clone` this repo
 2. Install dependencies with `npm install`
 3. `npm install exp` (not _really_ a dependency, so done separately)
-4. Sign up into [expo](https://expo.io/signup) and `exp login`
+4. Sign up for [expo](https://expo.io/signup) and `exp login`
 5. `exp build:android`
 6. ???
 7. Profit
@@ -37,7 +37,7 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 * Can you stay connected to the chat while you're on other apps?
   * No. This is a limitation with React Native, not the app. It should give you about a minute before others see you disconnect, but once you bring the app to the foreground you should reconnect instantly.
 * Does it have ads?
-  * Do I look like I work for wikia?
+  * Do I look like I work for Wikia?
 * Why should I trust to put my password into this app?
   * The whole code is open source. [See for yourself](screens/Login.js), we don't do anything with your account information.
 * Can you upload GIF avatars through this?
