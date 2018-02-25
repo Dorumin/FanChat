@@ -26,7 +26,12 @@ class Anchor extends React.Component {
 
     toast(text) {
         if (Platform.OS == 'android') {
-            ToastAndroid.show(text, ToastAndroid.SHORT);
+            const match = text.match(/c:(.+):Special:Chat|\/\/(.+)\.wikia\.com\/(?:wiki\/)?Special:chat/i);
+            if (match) {
+                ToastAndroid.show(`Enter chat: ${match[1]}`, ToastAndroid.SHORT);
+            } else {
+                ToastAndroid.show(text, ToastAndroid.SHORT);
+            }
         }
     }
 

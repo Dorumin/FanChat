@@ -20,6 +20,14 @@ class Configuration extends React.Component {
         processing: false
     };
 
+    componentDidMount() {
+        this.mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
     async openImagePicker() {
         const { session, setAvatar } = this.props;
         try {
@@ -46,20 +54,23 @@ class Configuration extends React.Component {
             if (body.imageUrl) {
                 setAvatar(body.imageUrl + '/scale-to-width-down/150');
             }
-            this.setState({ processing: false });
+            if (this.mounted) {
+                this.setState({ processing: false });
+            }
         } catch(e) {
             this.setState({ processing: false });
         }
     }
 
     render() {
-        const { session, navigation, logout } = this.props;
+        const { session, navigation, logout } = this.props,
+        { processing } = this.state;
         return (
             <ScrollView
                 style={{
                     flex: 1,
                     backgroundColor: '#fff',
-                    opacity: this.state.processing ? .5 : 1
+                    opacity: processing ? .5 : 1
                 }}
             >
                 <View
@@ -99,21 +110,25 @@ class Configuration extends React.Component {
                     onPress={() => navigation.navigate('Configuration_Profile')}
                     source={require('../../img/profile.png')}
                     text='Profile'
+                    disabled={processing}
                 />
                 <Section
                     onPress={() => navigation.navigate('Configuration_Pings')}
                     source={require('../../img/ping.png')}
                     text='Pings'
+                    disabled={processing}
                 />
                 <Section
                     onPress={() => navigation.navigate('Configuration_Settings')}
                     source={require('../../img/config.png')}
                     text='App settings'
+                    disabled={processing}
                 />
                 <Section
                     onPress={() => logout()}
                     source={require('../../img/logout.png')}
                     text='Sign out'
+                    disabled={processing}
                 />
             </ScrollView>
         )

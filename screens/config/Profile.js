@@ -176,6 +176,7 @@ class Profile extends React.Component {
                                     overflow: 'hidden'
                                 }}
                                 onPress={this.openImagePicker.bind(this)}
+                                disabled={processing}
                             >
                                 <View
                                     style={{
@@ -209,6 +210,7 @@ class Profile extends React.Component {
                                     fontSize: 16,
                                     paddingHorizontal: 10
                                 }}
+                                editable={!processing}
                                 value={name === undefined ? session.props.name : name}
                                 placeholder="What do people call you?"
                                 disableFullscreenUI={true}
@@ -223,6 +225,7 @@ class Profile extends React.Component {
                                     fontSize: 16,
                                     paddingHorizontal: 10
                                 }}
+                                editable={!processing}
                                 value={location === undefined ? session.props.location : location}
                                 placeholder="What's your location?"
                                 disableFullscreenUI={true}
@@ -237,6 +240,7 @@ class Profile extends React.Component {
                                     fontSize: 16,
                                     paddingHorizontal: 10
                                 }}
+                                editable={!processing}
                                 value={occupation === undefined ? session.props.occupation : occupation}
                                 placeholder="What's your occupation?"
                                 disableFullscreenUI={true}
@@ -251,6 +255,7 @@ class Profile extends React.Component {
                                     fontSize: 16,
                                     paddingHorizontal: 10
                                 }}
+                                editable={!processing}
                                 value={gender === undefined ? session.props.gender : gender}
                                 placeholder="What's your gender?"
                                 disableFullscreenUI={true}
@@ -267,6 +272,7 @@ class Profile extends React.Component {
                                     paddingVertical: 5,
                                     textAlignVertical: 'top'
                                 }}
+                                editable={!processing}
                                 value={bio === undefined ? session.props.bio : bio}
                                 placeholder='Tell us about yourself'
                                 disableFullscreenUI={true}
@@ -283,6 +289,7 @@ class Profile extends React.Component {
                                     paddingHorizontal: 10,
                                     marginBottom: 10
                                 }}
+                                editable={!processing}
                                 ref={input => this.passinput = input}
                                 placeholder='Your current password'
                                 returnKeyType='next'
@@ -300,6 +307,7 @@ class Profile extends React.Component {
                                     paddingHorizontal: 10,
                                     marginBottom: 10
                                 }}
+                                editable={!processing}
                                 ref={input => this.newpassinput = input}
                                 placeholder='Your new password'
                                 returnKeyType='next'
@@ -317,6 +325,7 @@ class Profile extends React.Component {
                                     paddingHorizontal: 10,
                                     marginBottom: 10
                                 }}
+                                editable={!processing}
                                 ref={input => this.retypeinput = input}
                                 placeholder='Retype new password'
                                 returnKeyType='done'
@@ -336,6 +345,7 @@ class Profile extends React.Component {
                                 <Button
                                     title='Change password'
                                     onPress={this.changePassword.bind(this)}
+                                    disabled={processing}
                                 />
                             </View>
                         </View>
@@ -361,6 +371,7 @@ class Profile extends React.Component {
                             style={{
                                 backgroundColor: '#fff'
                             }}
+                            disabled={processing}
                         >
                             <Image
                                 source={require('../../img/done.png')}

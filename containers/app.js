@@ -2,7 +2,7 @@ import React from 'react';
 import { AppState } from 'react-native';
 import { SecureStore, ScreenOrientation } from 'expo';
 import { connect } from 'react-redux';
-import { attemptLogin, fetchChat } from '../actions';
+import { attemptLogin, fetchChat, refreshChats } from '../actions';
 import Login from './login';
 import LoadingScreen from '../screens/LoadingScreen';
 import Main from './main';
@@ -12,9 +12,27 @@ class FanChat extends React.Component {
         super(props);
         this.lastId = null;
         this.state = {
-            load: 0
+            load: 0,
+            appState: AppState.currentState
         }
     }
+
+    componentDidMount() {
+        AppState.addEventListener('change', this.onAppStateChange);
+    }
+  
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this.onAppStateChange);
+    }
+  
+    onAppStateChange = (appState) => {
+        if (this.state.appState.match(/inactive|background/) && appState === 'active') {
+            this.props.refresh();
+        }
+
+        this.setState({ appState });
+    }
+
     componentDidUpdate() {
         const { session, chats, fetchChat } = this.props,
         keys = Object.keys(chats).filter(s => s.startsWith(session.id + '/') && s.split('/').length == 2);
@@ -81,7 +99,8 @@ export default connect(
     dispatch => {
         return {
             attemptLogin: (name, pass) => dispatch(attemptLogin(name, pass)),
-            fetchChat: wiki => dispatch(fetchChat(wiki))
+            fetchChat: wiki => dispatch(fetchChat(wiki)),
+            refresh: () => dispatch(refreshChats())
         }
     }
 )(FanChat);
