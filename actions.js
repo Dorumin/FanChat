@@ -607,8 +607,12 @@ export function attemptLogin(name, pass) {
     return async dispatch => {
         dispatch(loginRequest(name));
         try {
-            const result = await fetch(`https://services.wikia.com/auth/token?username=${name}&password=${pass}`, {
-                method: 'POST'
+            const result = await fetch('https://services.wikia.com/auth/token', {
+                method: 'POST',
+                body: `username=${name}&password=${pass}`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
             }),
             login = await result.json();
             if (login.error) throw login;
