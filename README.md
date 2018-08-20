@@ -25,7 +25,7 @@ In case you don't trust my .apk release (I don't blame you), you can build the p
 0. Install node, npm, and git.
 1. `git clone` this repo
 2. Install dependencies with `npm install`
-3. `npm install exp` (not _really_ a dependency, so done separately)
+3. `npm install -g exp` (not _really_ a dependency, so done separately)
 4. Sign up for [expo](https://expo.io/signup) and `exp login`
 5. `exp build:android`
 6. ???
